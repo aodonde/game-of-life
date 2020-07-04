@@ -6,6 +6,8 @@ import (
 	"time"
 
 	term "github.com/aodonde/game-of-life/Mecrow/terminaldraw"
+
+	life "github.com/aodonde/game-of-life/Mecrow/life"
 )
 
 func boxOfLetters() {
@@ -94,7 +96,28 @@ func drawBigBox() {
 	time.Sleep(5 * time.Second)
 }
 
+func testingGameMoveTo() {
+
+	var game life.TerminalGame
+
+	game.ClearScreen()
+	time.Sleep(2 * time.Second)
+
+	game.PrintInPlace("First Line")
+	game.MoveTo(1, 1)
+	game.PrintInPlace("This was printed from 1,1")
+	game.MoveTo(2, 2)
+	game.PrintInPlace("This was printed from 2,2")
+	game.MoveTo(6, 12)
+	game.PrintInPlace("And this from 6,12")
+	time.Sleep(5 * time.Second)
+	game.ClearScreen()
+	game.PrintInPlace("This should be also at 6,12")
+	time.Sleep(5 * time.Second)
+}
+
 func main() {
 
-	drawBigBox()
+	testingMoveTo()
+	testingGameMoveTo()
 }
