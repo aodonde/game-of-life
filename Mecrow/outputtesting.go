@@ -39,29 +39,62 @@ func boxOfLetters() {
 }
 
 func changingString() {
-	var cursor term.TerminalCursor
+	var cons term.Console
 
-	cursor.PrintInPlace("1st String")
+	cons.PrintInPlace("1st String")
 	time.Sleep(2 * time.Second)
-	cursor.PrintInPlace("2nd String")
+	cons.PrintInPlace("2nd String")
 	time.Sleep(2 * time.Second)
-	cursor.PrintInPlace("3rd String")
+	cons.PrintInPlace("3rd String")
 	time.Sleep(2 * time.Second)
-	cursor.PrintInPlace("4th")
+	cons.PrintInPlace("4th")
 	time.Sleep(2 * time.Second)
-	cursor.PrintInPlace("5")
+	cons.PrintInPlace("5")
 	time.Sleep(2 * time.Second)
-	cursor.PrintInPlace("Final Stirng")
+	cons.PrintInPlace("Final Stirng")
 	time.Sleep(2 * time.Second)
-	cursor.Move(term.Right, 8)
-	cursor.PrintInPlace("rign")
+	cons.Move(term.Right, 8)
+	cons.PrintInPlace("rign")
 	time.Sleep(2 * time.Second)
-	cursor.PrintInPlace("ring, dammit")
+	cons.PrintInPlace("ring, dammit")
 	time.Sleep(2 * time.Second)
 
 }
 
+func testingMoveTo() {
+
+	var cons term.Console
+
+	cons.ClearScreen()
+	time.Sleep(2 * time.Second)
+
+	cons.PrintInPlace("First Line")
+	cons.MoveTo(1, 1)
+	cons.PrintInPlace("This was printed from 1,1")
+	cons.MoveTo(2, 2)
+	cons.PrintInPlace("This was printed from 2,2")
+	cons.MoveTo(6, 12)
+	cons.PrintInPlace("And this from 6,12")
+	time.Sleep(5 * time.Second)
+	cons.ClearScreen()
+	cons.PrintInPlace("This should be also at 6,12")
+	time.Sleep(5 * time.Second)
+}
+
+func drawBigBox() {
+	var cons term.Console
+
+	cons.ClearScreen()
+	for x := 1; x < 20; x++ {
+		for y := 1; y < 20; y++ {
+			cons.MoveTo(x, y)
+			cons.Print(term.Box)
+		}
+	}
+	time.Sleep(5 * time.Second)
+}
+
 func main() {
 
-	changingString()
+	drawBigBox()
 }
